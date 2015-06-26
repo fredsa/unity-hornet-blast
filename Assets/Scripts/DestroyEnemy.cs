@@ -8,7 +8,10 @@ public class DestroyEnemy : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag ("Enemy")) {
-			Instantiate(explosionPrefab, other.transform.position, other.transform.rotation);
+			GameObject clone = Instantiate(explosionPrefab, other.transform.position, other.transform.rotation) as GameObject;
+			TextMesh mesh = clone.GetComponentInChildren<TextMesh>();
+			mesh.text = "200";
+
 			Destroy (other.gameObject);
 			Destroy (gameObject);
 		}
