@@ -6,6 +6,8 @@ public class WaypointController : MonoBehaviour {
 	public GameObject waypoints;
 	public float speed = 1f;
 
+	public int enemyPointValue = 100;
+
 	Rigidbody2D rb;
 	int targetWaypointIndex = -1;
 	Vector2 targetPosition;
