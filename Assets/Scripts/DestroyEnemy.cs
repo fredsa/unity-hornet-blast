@@ -9,6 +9,11 @@ public class DestroyEnemy : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag ("Enemy")) {
 			int points = other.GetComponent<WaypointController>().enemyPointValue;
+
+
+			ScoreTextController scoreTextController = FindObjectOfType<Canvas>().GetComponentInChildren<ScoreTextController> ();
+			scoreTextController.AddPoints(points);
+
 			GameObject clone = Instantiate(explosionPrefab, other.transform.position, other.transform.rotation) as GameObject;
 			TextMesh mesh = clone.GetComponentInChildren<TextMesh>();
 			mesh.text = "" + points;
