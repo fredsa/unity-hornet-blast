@@ -19,7 +19,7 @@ public class ScoreTextController : MonoBehaviour {
 	}
 
 	void UpdateScore () {
-		scoreText.text = "Score: " + score;
+		scoreText.text = "Score: " + string.Format ("{0,4:n0}", score);
 	}
 
 	void Update () {
