@@ -2,10 +2,10 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class LivesTextController : MonoBehaviour {
+public class LivesController : MonoBehaviour {
 
 	int lives;
-	Text livesText;
+    Text livesText;
 	Animator animator;
 	
 	void Start () {
@@ -14,7 +14,11 @@ public class LivesTextController : MonoBehaviour {
 		animator = gameObject.GetComponent<Animator> ();
 		UpdateScore ();
 	}
-	
+
+	public int LivesRemaining() {
+		return lives;
+	}
+
 	public void Die() {
 		lives--;
 		animator.SetTrigger ("ValueChanged");

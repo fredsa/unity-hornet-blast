@@ -5,6 +5,8 @@ using System.Collections;
 public class PlayerColliderController : MonoBehaviour {
 
 	public GameObject explosionPrefab;
+	public LivesController livesController;
+	public GameOverController gameOverController;
 	
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag ("Enemy")) {
@@ -13,7 +15,14 @@ public class PlayerColliderController : MonoBehaviour {
 			mesh.text = "";
 
 			Destroy (other.gameObject);
-			Destroy (gameObject);
+//			Destroy (gameObject);
+
+			livesController.Die();
+			if (livesController.LivesRemaining() > 0) {
+			} else {
+				gameOverController.GameOver();
+				gameObject.SetActive(false);
+			}
 		}
 	}
 	
