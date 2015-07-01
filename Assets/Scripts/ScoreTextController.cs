@@ -17,14 +17,12 @@ public class ScoreTextController : MonoBehaviour {
 
 	public void AddPoints(int points) {
 		score += points;
-		animator.SetTrigger ("PointsAdded");
+		animator.SetTrigger ("ValueChanged");
 		UpdateScore ();
 	}
 
 	void UpdateScore () {
-		scoreText.text = string.Format ("{0,4:n0}", score);
+		scoreText.text = string.Format ("{0,-4:n0}", score);
 	}
 
-	void Update () {
-	}
 }
