@@ -12,7 +12,7 @@ public class SpawnController : MonoBehaviour {
 	float checkRadius;
 
 	void Start () {
-		layermask = LayerMask.GetMask("EnemiesEffector", "EnemiesKinematic");
+		layermask = LayerMask.GetMask("Enemies");
 		InvokeRepeating ("Spawn", delay, rate);
 	}
 	
