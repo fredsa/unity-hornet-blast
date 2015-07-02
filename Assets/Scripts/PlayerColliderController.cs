@@ -20,8 +20,7 @@ public class PlayerColliderController : MonoBehaviour {
 			livesController.Die();
 			if (livesController.LivesRemaining() > 0) {
 			} else {
-				gameOverController.GameOver();
-				gameObject.SetActive(false);
+				gameOverController.SetGameOver(true);
 			}
 		}
 	}

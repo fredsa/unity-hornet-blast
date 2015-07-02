@@ -9,9 +9,13 @@ public class ScoreTextController : MonoBehaviour {
 	Animator animator;
 
 	void Start () {
-		score = 0;
 	    scoreText = gameObject.GetComponent<Text> ();
 	    animator = gameObject.GetComponent<Animator> ();
+		ResetScore ();
+	}
+
+	public void ResetScore() {
+		score = 0;
 		UpdateScore ();
 	}
 

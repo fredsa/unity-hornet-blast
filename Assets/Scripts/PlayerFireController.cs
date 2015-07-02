@@ -4,9 +4,11 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerFireController : MonoBehaviour {
 
+	public GameOverController gameOverController;
+
 	public float speed = 20f;
 	public Rigidbody2D projectile;
-
+	
 	AudioSource sound;
 
 	void Start () {
@@ -19,15 +21,15 @@ public class PlayerFireController : MonoBehaviour {
 			return true;
 		}
 
-		// tap on "Jump" area
-		if (CrossPlatformInputManager.GetButtonDown ("Jump")) {
+		// SPACE key
+		if (Input.GetKeyDown (KeyCode.Space)) {
 			return true;
 		}
-
-		// debug with rapid fire
-		if (Input.GetKey (KeyCode.Space)) {
-			return true;
-		}
+		
+//		// tap on "Jump" area
+//		if (CrossPlatformInputManager.GetButtonDown ("Jump")) {
+//			return true;
+//		}
 
 		for (int i=0; i < Input.touches.Length; i++) {
 			if (Input.GetTouch(i).phase == TouchPhase.Began) {
@@ -39,11 +41,17 @@ public class PlayerFireController : MonoBehaviour {
 
 	void Update () {
 		if (IsFiring()) {
-			Rigidbody2D clone;
-			clone = Instantiate(projectile, transform.position, transform.rotation) as Rigidbody2D;
-			clone.velocity = transform.TransformDirection(Vector2.up * speed);
+			if (gameOverController.IsGameOver()) {
+				gameOverController.SetGameOver(false);
+			} else {
+				Rigidbody2D clone;
+				clone = Instantiate(projectile, transform.position, transform.rotation) as Rigidbody2D;
+				clone.velocity = transform.TransformDirection(Vector2.up * speed);
 
-			sound.Play();
+				sound.Play();
+			}
 		}
 	}
+
+
 }

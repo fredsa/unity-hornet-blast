@@ -9,14 +9,18 @@ public class LivesController : MonoBehaviour {
 	Animator animator;
 	
 	void Start () {
-		lives = 3;
 		livesText = gameObject.GetComponent<Text> ();
 		animator = gameObject.GetComponent<Animator> ();
-		UpdateScore ();
+		ResetLives ();
 	}
 
 	public int LivesRemaining() {
 		return lives;
+	}
+
+	public void ResetLives() {
+		lives = 3;
+		UpdateScore ();
 	}
 
 	public void Die() {
