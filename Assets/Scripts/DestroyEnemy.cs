@@ -10,8 +10,8 @@ public class DestroyEnemy : MonoBehaviour {
 		if (other.gameObject.CompareTag ("Enemy")) {
 			int points = other.GetComponent<WaypointController>().enemyPointValue;
 
-
-			ScoreTextController scoreTextController = FindObjectOfType<Canvas>().GetComponentInChildren<ScoreTextController> ();
+			GameObject scoreHolder = GameObject.FindGameObjectWithTag("Score");
+			ScoreTextController scoreTextController = scoreHolder.GetComponentInChildren<ScoreTextController> ();
 			scoreTextController.AddPoints(points);
 
 			GameObject clone = Instantiate(explosionPrefab, other.transform.position, other.transform.rotation) as GameObject;

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerFireController : MonoBehaviour {
 
@@ -8,14 +9,36 @@ public class PlayerFireController : MonoBehaviour {
 
 	AudioSource sound;
 
-	// Use this for initialization
 	void Start () {
 		sound = GetComponent<AudioSource> ();
 	}
-	
-	// Update is called once per frame
+
+	bool IsFiring() {
+		// CTRL key
+		if (Input.GetButtonDown ("Fire1")) {
+			return true;
+		}
+
+		// tap on "Jump" area
+		if (CrossPlatformInputManager.GetButtonDown ("Jump")) {
+			return true;
+		}
+
+		// debug with rapid fire
+		if (Input.GetKey (KeyCode.Space)) {
+			return true;
+		}
+
+		for (int i=0; i < Input.touches.Length; i++) {
+			if (Input.GetTouch(i).phase == TouchPhase.Began) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	void Update () {
-		if (Input.GetButtonDown ("Fire1") || Input.GetKey(KeyCode.Space)) {
+		if (IsFiring()) {
 			Rigidbody2D clone;
 			clone = Instantiate(projectile, transform.position, transform.rotation) as Rigidbody2D;
 			clone.velocity = transform.TransformDirection(Vector2.up * speed);
