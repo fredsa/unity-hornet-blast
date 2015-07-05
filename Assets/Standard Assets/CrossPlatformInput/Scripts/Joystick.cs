@@ -18,6 +18,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 		public AxisOption axesToUse = AxisOption.Both; // The options for the axes that the still will use
 		public string horizontalAxisName = "Horizontal"; // The name given to the horizontal axis for the cross platform input
 		public string verticalAxisName = "Vertical"; // The name given to the vertical axis for the cross platform input
+		public float axisMultiplier = 1f;
 
 		Vector3 m_StartPos;
 		Vector3 m_DownPos;
@@ -81,30 +82,30 @@ namespace UnityStandardAssets.CrossPlatformInput
 			{
 //				int delta = (int)(data.position.x - m_StartPos.x);
 				int delta = (int)(data.position.x - m_DownPos.x);
-				//				delta = Mathf.Clamp(delta, -MovementRange, MovementRange);
-				if (delta > MovementRange/3) {
-					delta = MovementRange;
-				} else if (delta < -MovementRange/3) {
-					delta = -MovementRange;
-				} else {
-					delta = 0;
-				}
-				newPos.x = delta;
+				delta = Mathf.Clamp(delta, -MovementRange, MovementRange);
+//				if (delta > MovementRange/3) {
+//					delta = MovementRange;
+//				} else if (delta < -MovementRange/3) {
+//					delta = -MovementRange;
+//				} else {
+//					delta = 0;
+//				}
+				newPos.x = delta * axisMultiplier;
 			}
 
 			if (m_UseY)
 			{
 //				int delta = (int)(data.position.y - m_StartPos.y);
 				int delta = (int)(data.position.y - m_DownPos.y);
-//				delta = Mathf.Clamp(delta, -MovementRange, MovementRange);
-				if (delta > MovementRange/3) {
-					delta = MovementRange;
-				} else if (delta < -MovementRange/3) {
-					delta = -MovementRange;
-				} else {
-					delta = 0;
-				}
-				newPos.y = delta;
+				delta = Mathf.Clamp(delta, -MovementRange, MovementRange);
+//				if (delta > MovementRange/3) {
+//					delta = MovementRange;
+//				} else if (delta < -MovementRange/3) {
+//					delta = -MovementRange;
+//				} else {
+//					delta = 0;
+//				}
+				newPos.y = delta * axisMultiplier;
 			}
 			transform.position = new Vector3(m_StartPos.x + newPos.x, m_StartPos.y + newPos.y, m_StartPos.z + newPos.z);
 			UpdateVirtualAxes(transform.position);
