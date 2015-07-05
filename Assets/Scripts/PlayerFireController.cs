@@ -27,15 +27,16 @@ public class PlayerFireController : MonoBehaviour {
 		}
 		
 //		// tap on "Jump" area
-//		if (CrossPlatformInputManager.GetButtonDown ("Jump")) {
-//			return true;
+		if (CrossPlatformInputManager.GetButtonDown ("Fire1")) {
+			return true;
+		}
+
+//		for (int i=0; i < Input.touches.Length; i++) {
+//			if (Input.GetTouch(i).phase == TouchPhase.Began) {
+//				return true;
+//			}
 //		}
 
-		for (int i=0; i < Input.touches.Length; i++) {
-			if (Input.GetTouch(i).phase == TouchPhase.Began) {
-				return true;
-			}
-		}
 		return false;
 	}
 
