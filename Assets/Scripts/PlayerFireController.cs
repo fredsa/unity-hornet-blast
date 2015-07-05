@@ -43,7 +43,7 @@ public class PlayerFireController : MonoBehaviour {
 	void Update () {
 		if (IsFiring()) {
 			if (gameOverController.IsGameOver()) {
-//				gameOverController.SetGameOver(false);
+				gameOverController.SetGameOver(false);
 			} else {
 				Rigidbody2D clone;
 				clone = Instantiate(projectile, transform.position, transform.rotation) as Rigidbody2D;

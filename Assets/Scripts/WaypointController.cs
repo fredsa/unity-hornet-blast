@@ -3,24 +3,30 @@ using System.Collections;
 
 public class WaypointController : MonoBehaviour {
 
-	public GameObject waypoints;
-	public float speed = 1f;
-
 	public int enemyPointValue = 100;
 
+	GameObject waypoints;
+	float speed = 1f;
 	Rigidbody2D rb;
 	int targetWaypointIndex = -1;
 	Vector2 targetPosition;
 	Vector2 targetDirection;
+	Vector3 referencePosition;
 
 	void Start () {
 		rb = GetComponentInChildren<Rigidbody2D> ();
+		referencePosition = rb.position;
 		nextTarget();
 	}
 
 	void nextTarget() {
 		targetWaypointIndex = ++targetWaypointIndex % waypoints.transform.childCount;
-		targetPosition = waypoints.transform.GetChild (targetWaypointIndex).position;
+		targetPosition = referencePosition + waypoints.transform.GetChild (targetWaypointIndex).localPosition;
+	}
+
+	public void SetWaypoints(GameObject waypoints, float speed) {
+		this.speed = speed;
+		this.waypoints = waypoints;
 	}
 
 	void Update() {
