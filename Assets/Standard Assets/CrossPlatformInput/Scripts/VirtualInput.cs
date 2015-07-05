@@ -15,7 +15,7 @@ namespace UnityStandardAssets.CrossPlatformInput
             // Dictionary to store the name relating to the virtual axes
         protected Dictionary<string, CrossPlatformInputManager.VirtualButton> m_VirtualButtons =
             new Dictionary<string, CrossPlatformInputManager.VirtualButton>();
-        protected List<string> m_AlwaysUseVirtual = new List<string>();
+//        protected List<string> m_AlwaysUseVirtual = new List<string>();
             // list of the axis and button names that have been flagged to always use a virtual axis or button
         
 
@@ -42,11 +42,11 @@ namespace UnityStandardAssets.CrossPlatformInput
                 // add any new axes
                 m_VirtualAxes.Add(axis.name, axis);
 
-                // if we dont want to match with the input manager setting then revert to always using virtual
-                if (!axis.matchWithInputManager)
-                {
-                    m_AlwaysUseVirtual.Add(axis.name);
-                }
+//                // if we dont want to match with the input manager setting then revert to always using virtual
+//                if (!axis.matchWithInputManager)
+//                {
+//                    m_AlwaysUseVirtual.Add(axis.name);
+//                }
             }
         }
 
@@ -63,11 +63,11 @@ namespace UnityStandardAssets.CrossPlatformInput
                 // add any new buttons
                 m_VirtualButtons.Add(button.name, button);
 
-                // if we dont want to match to the input manager then always use a virtual axis
-                if (!button.matchWithInputManager)
-                {
-                    m_AlwaysUseVirtual.Add(button.name);
-                }
+//                // if we dont want to match to the input manager then always use a virtual axis
+//                if (!button.matchWithInputManager)
+//                {
+//                    m_AlwaysUseVirtual.Add(button.name);
+//                }
             }
         }
 

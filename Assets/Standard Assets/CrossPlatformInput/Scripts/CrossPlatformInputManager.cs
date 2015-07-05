@@ -195,19 +195,19 @@ namespace UnityStandardAssets.CrossPlatformInput
 		{
 			public string name { get; private set; }
 			private float m_Value;
-			public bool matchWithInputManager { get; private set; }
+//			public bool matchWithInputManager { get; private set; }
 
 
 			public VirtualAxis(string name)
-				: this(name, true)
-			{
-			}
-
-
-			public VirtualAxis(string name, bool matchToInputSettings)
+//				: this(name, true)
+//			{
+//			}
+//
+//
+//			public VirtualAxis(string name, bool matchToInputSettings)
 			{
 				this.name = name;
-				matchWithInputManager = matchToInputSettings;
+//				matchWithInputManager = matchToInputSettings;
 			}
 
 
@@ -243,7 +243,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 		public class VirtualButton
 		{
 			public string name { get; private set; }
-			public bool matchWithInputManager { get; private set; }
+//			public bool matchWithInputManager { get; private set; }
 
 			private int m_LastPressedFrame = -5;
 			private int m_ReleasedFrame = -5;
@@ -251,15 +251,15 @@ namespace UnityStandardAssets.CrossPlatformInput
 
 
 			public VirtualButton(string name)
-				: this(name, true)
-			{
-			}
-
-
-			public VirtualButton(string name, bool matchToInputSettings)
+//				: this(name, true)
+//			{
+//			}
+//
+//
+//			public VirtualButton(string name, bool matchToInputSettings)
 			{
 				this.name = name;
-				matchWithInputManager = matchToInputSettings;
+//				matchWithInputManager = matchToInputSettings;
 			}
 
 
