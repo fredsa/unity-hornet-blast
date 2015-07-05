@@ -26,7 +26,7 @@ public class WaypointController : MonoBehaviour {
 	void Update() {
 		Vector2 direction = targetPosition - rb.position;
 		float distance = direction.magnitude;
-		if (distance < .1f) {
+		if (distance < .25f) {
 			nextTarget ();
 		}
 		direction.Normalize ();
