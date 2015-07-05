@@ -39,6 +39,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 		void UpdateVirtualAxes(Vector3 value)
 		{
 			var delta = m_StartPos - value;
+//			var delta = m_DownPos - value;
 			delta.y = -delta.y;
 			delta /= MovementRange;
 			if (m_UseX)
@@ -79,16 +80,30 @@ namespace UnityStandardAssets.CrossPlatformInput
 			if (m_UseX)
 			{
 //				int delta = (int)(data.position.x - m_StartPos.x);
-				float delta = data.position.x - m_DownPos.x;
-				delta = Mathf.Clamp(delta, - MovementRange, MovementRange);
+				int delta = (int)(data.position.x - m_DownPos.x);
+				//				delta = Mathf.Clamp(delta, -MovementRange, MovementRange);
+				if (delta > MovementRange/3) {
+					delta = MovementRange;
+				} else if (delta < -MovementRange/3) {
+					delta = -MovementRange;
+				} else {
+					delta = 0;
+				}
 				newPos.x = delta;
 			}
 
 			if (m_UseY)
 			{
 //				int delta = (int)(data.position.y - m_StartPos.y);
-				float delta = data.position.y - m_DownPos.y;
-				delta = Mathf.Clamp(delta, -MovementRange, MovementRange);
+				int delta = (int)(data.position.y - m_DownPos.y);
+//				delta = Mathf.Clamp(delta, -MovementRange, MovementRange);
+				if (delta > MovementRange/3) {
+					delta = MovementRange;
+				} else if (delta < -MovementRange/3) {
+					delta = -MovementRange;
+				} else {
+					delta = 0;
+				}
 				newPos.y = delta;
 			}
 			transform.position = new Vector3(m_StartPos.x + newPos.x, m_StartPos.y + newPos.y, m_StartPos.z + newPos.z);
@@ -99,8 +114,8 @@ namespace UnityStandardAssets.CrossPlatformInput
 		public void OnPointerUp(PointerEventData data)
 		{
 			transform.position = m_StartPos;
-//			UpdateVirtualAxes(m_StartPos);
-			UpdateVirtualAxes(m_DownPos);
+			UpdateVirtualAxes(m_StartPos);
+//			UpdateVirtualAxes(m_DownPos);
 		}
 
 
